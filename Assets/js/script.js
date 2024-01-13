@@ -27,7 +27,7 @@ function timeDivInside(item, timeFormatted){
   textArea.attr('rows', '3');
   var button = $('<button>').addClass('btn saveBtn col-2 col-md-1');
   button.attr('aria-label', 'save');
-
+  button.on('click', { 'textArea': textArea, 'id': `${item}-${timeFormatted}` }, saveEvent);
 
   var i = $('<i>').addClass('fas fa-save');
   i.attr('aria-hidden', 'true');
@@ -75,6 +75,32 @@ function getTimeClass(item, currentTime) {
   } else {
       return 'future';
   }
+}
+
+
+function saveEvent({ target, data }){
+  var id = data.id;
+  var value = data.textArea.val();
+
+  var toBeAdded = { 'id': id, 'value': value };
+
+  var currentStore = localStorage.getItem('schedule') || [];
+
+  if(currentStore != ''){
+
+    console.log("Existed");
+    currentStore = JSON.parse(currentStore);
+    console.log("content of currentstore", currentStore);
+    currentStore.push(toBeAdded);
+    localStorage.setItem("schedule", JSON.stringify(currentStore));
+
+  } else {
+
+    console.log("Didnt exist");
+    localStorage.setItem('schedule', JSON.stringify([toBeAdded]));
+
+  }
+
 }
 
 
