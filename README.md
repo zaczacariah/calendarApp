@@ -10,7 +10,7 @@ Live Link:
 https://zaczacariah.github.io/calendarApp/
 
 ## Screenshot
-![alt text](./assets/screenshot.png)
+![alt text](./Assets/screenshot.png)
 
 ## Installation
 
